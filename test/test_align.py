@@ -26,7 +26,7 @@ def test_nw_backtrace():
     """
     seq3, _ = read_fasta("./data/test_seq3.fa")
     seq4, _ = read_fasta("./data/test_seq4.fa")
-    alignment = NeedlemanWunsch("./substitution_matrices/BLOSUM62",-10,-1)
+    alignment = NeedlemanWunsch("./substitution_matrices/BLOSUM62.mat",-10,-1)
     alignment.align(seq3,seq4)
 
     assert alignment.alignment_score == 17, "Your Alignment Score is Different than Expected" #assert alignment score is 17, the value the TAs said to expect
