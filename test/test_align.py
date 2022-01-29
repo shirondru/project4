@@ -33,7 +33,7 @@ def test_nw_backtrace():
     assert alignment.seqA_align == "MAVHQLIRRP", "Seq3 Alignment is wrong" #assert Seq3 alignment is what the TAs said to expect
     assert alignment.seqB_align == "M---QLIRHP", "Seq4 Alignment is wrong" #assert Seq4 alignment is what the TAs said to expect
 
-    assert
+    
 
 
 
@@ -45,6 +45,6 @@ def test_example_from_class():
     Asserting that I get same alignment score as the example shown in lecture
     """
 
-
+    pass
 
 
