@@ -219,9 +219,9 @@ class NeedlemanWunsch:
             
         # Find optimal final score
         optimal_decision = max(
-        (self._align_matrix[len(seqA),len(seqB)],'Align Matrix'),
-        (self._gapA_matrix[len(seqA),len(seqB)],'gapA Matrix'),
-        (self._gapB_matrix[len(seqA),len(seqB)],'gapB Matrix')  
+        (self._align_matrix[len(self._seqA),len(self._seqB)],'Align Matrix'),
+        (self._gapA_matrix[len(self._seqA),len(self._seqB)],'gapA Matrix'),
+        (self._gapB_matrix[len(self._seqA),len(self._seqB)],'gapB Matrix')  
         )
         
         self.alignment_score = optimal_decision[0] #max score from bottom right of all 3 matrices is the alignment score
@@ -229,28 +229,28 @@ class NeedlemanWunsch:
         def recursively_backtrace(score_matrix_name,score_matrix_row,score_matrix_column):
             if score_matrix_row != 0 and score_matrix_column != 0: #Base case. Stop recursing once you reach top left of backtrace
                 if score_matrix_name == "Align Matrix":
-                    self.seqA_align = seqA[score_matrix_row - 1] + self.seqA_align # add matching element of seqA to front of seqA alignment that is being recursively built
-                    self.seqB_align = seqB[score_matrix_column - 1] + self.seqB_align # treat seqB accordingly, since the optimal score concluded seqA and seqB matched/mismatched here
+                    self.seqA_align = self._seqA[score_matrix_row - 1] + self.seqA_align # add matching element of seqA to front of seqA alignment that is being recursively built
+                    self.seqB_align = self._seqB[score_matrix_column - 1] + self.seqB_align # treat seqB accordingly, since the optimal score concluded seqA and seqB matched/mismatched here
                     next_args = self._back[score_matrix_row,score_matrix_column]
                     return recursively_backtrace(next_args[0],next_args[1],next_args[2]) #Inputting the current row and column into self._back returns a tuple with
                 #the score matrix name, row, and column, of the optimal decision at the previous step, facilitating backtrace
             
                 elif score_matrix_name == "gapA Matrix":
                     self.seqA_align = '-' + self.seqA_align #add gap in A alignment
-                    self.seqB_align = seqB[score_matrix_column - 1] + self.seqB_align #do not add gap in B alignment
+                    self.seqB_align = self._seqB[score_matrix_column - 1] + self.seqB_align #do not add gap in B alignment
                     next_args = self._back_A[score_matrix_row,score_matrix_column]
 
                     return recursively_backtrace(next_args[0],next_args[1],next_args[2]) #Inputting the current row and column into self._back_A returns a tuple with
                 #the score matrix name, row, and column, of the optimal decision at the previous step, facilitating backtrace
 
                 elif score_matrix_name == "gapB Matrix":
-                    self.seqA_align = seqA[score_matrix_row - 1] + self.seqA_align #do not add gap in A alignment
+                    self.seqA_align = self._seqA[score_matrix_row - 1] + self.seqA_align #do not add gap in A alignment
                     self.seqB_align = '-' + self.seqB_align #add gap in B alignment
                     next_args = self._back_B[score_matrix_row,score_matrix_column]
                     return recursively_backtrace(next_args[0],next_args[1],next_args[2]) #Inputting the current row and column into self._back_B returns a tuple with
                 #the score matrix name, row, and column, of the optimal decision at the previous step, facilitating backtrace
             
-        recursively_backtrace(optimal_decision[1],len(seqA),len(seqB)) #begin backtracing at bottom right of score matrix that contains the max alignment score
+        recursively_backtrace(optimal_decision[1],len(self._seqA),len(self._seqB)) #begin backtracing at bottom right of score matrix that contains the max alignment score
         
         
         #1. align_matrix has max score in bottom right. call function with "Align Matrix",4,6
