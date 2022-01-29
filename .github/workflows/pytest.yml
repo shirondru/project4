@@ -17,5 +17,6 @@ jobs:
           python -m pip install --upgrade pip 
           python -m pip install pytest==6.2.5
           python -m pip install Alignment 
+          python -m pip install requirements.txt 
       - name: Test with pytest
         run: python -m pytest -v test/*
