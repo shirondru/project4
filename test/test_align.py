@@ -25,23 +25,23 @@ def test_nw_alignment():
     alignment.align(seq1,seq2)
     
     expected_align_matrix = [  #alignment matrix I calculated by hand
-       [ 0., -np.inf, -np.inf, -np.inf, -np.inf],
-       [-np.inf,   5., -12., -12., -14.],
-       [-np.inf, -11.,   4.,  -1.,  -6.],
-       [-np.inf, -13.,  -8.,   5.,   4.]
-       ]
+       [  0., -np.inf, -np.inf, -np.inf],
+       [-np.inf,   5., -11., -13.],
+       [-np.inf, -12.,   4.,  -8.],
+       [-np.inf, -12.,  -1.,   5.],
+       [-np.inf, -14.,  -6.,   4.]]
     expected_gapA_matrix = [ #gapA matrix I calculated by hand
-       [-10., -11., -12., -13., -14.],
-       [-np.inf, -22.,  -6.,  -7.,  -8.],
-       [-np.inf, -23., -17.,  -7.,  -8.],
-       [-np.inf, -24., -18., -18.,  -6.]]
+      [-10., -11., -12., -13.],
+       [-np.inf, -22.,  -6.,  -7.],
+       [-np.inf, -23., -17.,  -7.],
+       [-np.inf, -24., -18., -12.],
+       [-np.inf, -25., -19., -17.]]
     expected_gapB_matrix = [ #gapB matrix I calculated by hand
-       [-10., -np.inf, -np.inf, -np.inf, -np.inf],
-       [-11., -22., -23., -24., -25.],
-       [-12.,  -6., -17., -18., -19.],
-       [-13.,  -7.,  -7., -12., -17.]
-       ]
-
+       [-10., -np.inf, -np.inf, -np.inf],
+       [-11., -22., -23., -24.],
+       [-12.,  -6., -17., -18.],
+       [-13.,  -7.,  -7., -18.],
+       [-14.,  -8.,  -8.,  -6.]]
     #assert each of the alignment matrices I calculated by hand are equal (within a very small threshold) of the returned alignment matrix by the module.
     assert np.allclose(alignment._align_matrix,expected_align_matrix)
     assert np.allclose(alignment._gapA_matrix,expected_gapA_matrix)
