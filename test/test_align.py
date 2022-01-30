@@ -52,7 +52,7 @@ def test_example_from_class():
 
     seqX = "ACACT" 
     seqY = "AAT"
-    alignment = NeedlemanWunsch("./substitution_matrices/test_sub_mat",-3,-1)
+    alignment = NeedlemanWunsch("./substitution_matrices/test_sub_mat.mat",-3,-1)
     alignment.align(seqX,seqY)
     assert alignment.alignment_score == -4, "Your alignment score is different than expected" #Class example had alignment score -4, assert you were able to reproduce that
     assert alignment.seqA_align == "ACACT", "seqX Alignment is wrong" #Class example had this alignment as ACACT, assert you were able to reproduce that
