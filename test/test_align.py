@@ -43,8 +43,26 @@ def test_nw_backtrace():
 def test_example_from_class():
     """
     Asserting that I get same alignment score as the example shown in lecture
+    Using a matrix `test_sub_mat` that I created that scores -1 for mismatches and 1 for correct matches, just like the lecture example
+    Gap open = -3, gap extend = -1, just like the lecture example
+
+    Importantly, this also tests my method favors matches/mismatches over gaps when there is a tie in alignment scores, as per the heuristic I introduced
+    #this example could have also given "AA--T" for the seqY alignment due to ties in the alignment scores. But it should return "--AAT"
+    """
+
+    seqX = "ACACT" 
+    seqY = "AAT"
+    alignment = NeedlemanWunsch("./substitution_matrices/test_sub_mat",-3,-1)
+    alignment.align(seqX,seqY)
+    assert alignment.alignment_score == -4, "Your alignment score is different than expected" #Class example had alignment score -4, assert you were able to reproduce that
+    assert alignment.seqA_align == "ACACT", "seqX Alignment is wrong" #Class example had this alignment as ACACT, assert you were able to reproduce that
+    assert alignment.seqB_align == "--AAT", "seqY Alignment is wrong" #Class example had this alignment as "--AAT", assert you were able to reproduce that
+    #Additionally, this tests that ties in alignment are handled properly per my heuristic
+
+def check_backtrace_equals_score():
+    """
+    Take the alignment output and use it to calculate a score. Check that score equals the alignment score output to ensure backtracing and alignment were implemented properly. If they don't corroborate each other, there is a problem
     """
 
     pass
-
-
+    
