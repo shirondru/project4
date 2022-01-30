@@ -104,7 +104,6 @@ def check_backtrace_equals_score(alignment):
         NeedlemanWunsch.align object, which conatins the seqA and seqB alignmenst as well as the alignment scores
 
     """
-
     def add_gap_penalty(alignment_seq,i,score):
     """
     Checks if a gap is a gap opening + extension, or just a gap extension and applies the appropriate penalty
