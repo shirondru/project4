@@ -1,4 +1,4 @@
-![BuildStatus](https://github.com/shirondru/Project4/actions/workflows/test.yml/badge.svg?event=push)
+![BuildStatus](https://github.com/shirondru/Project4/actions/workflows/pytest.yml/badge.svg?event=push)
 
 
 # Project 4
